@@ -19,6 +19,7 @@ HORIZON = 240
 EPS = 1e-6
 
 # --- tuned constants (searched against the practice + held-out cases) ---
+# searched against the practice cases and held-out cuts of the same history
 LAM = 0.50          # scale on the empirical quantile offsets
 TAIL = 1.00         # extra scale applied to the outer levels (0.05 / 0.95) only
 DRIFT = 0.0         # logit drift per hour
