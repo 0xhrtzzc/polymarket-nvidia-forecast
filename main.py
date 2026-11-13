@@ -5,7 +5,7 @@ Model. A price is a bounded probability, so the honest state space is the logit 
 over the case's 72 hours of minutes, measure how far the logit moves in h minutes for a spread
 of horizons h, then read the 5/25/50/75/95 quantiles off that empirical distribution and map
 them back. A quiet market gets a narrow band, a market that jumps gets a fat one, and the band
-widens with the horizon the way the market's own history does (not the way a fixed number says).
+widens with the horizon the way the market's own history does, not the way a fixed number says.
 Markets with too little history fall back to the house baseline's spread.
 
 Output: /output/<id>.out = {"forecasts":[{"id":..., "q":[[q05,q25,q50,q75,q95] x 240]}]}
@@ -19,10 +19,10 @@ HORIZON = 240
 EPS = 1e-6
 
 # --- tuned constants (searched against the practice + held-out cases) ---
-LAM = 1.00          # scale on the empirical quantile offsets
+LAM = 0.50          # scale on the empirical quantile offsets
 TAIL = 1.00         # extra scale applied to the outer levels (0.05 / 0.95) only
 DRIFT = 0.0         # logit drift per hour
-SHRINK = 0.0        # 0..1 blend of the empirical offsets toward the baseline's random walk
+SHRINK = 0.20       # 0..1 blend of the empirical offsets toward the baseline
 BASE_SIGMA = 0.0025  # the house baseline's price-space spread per square-root minute
 SAMPLES = 40        # below this many observations, use the fallback
 HORIZONS = [1, 2, 3, 5, 8, 12, 17, 24, 34, 48, 68, 96, 136, 192, 240]
